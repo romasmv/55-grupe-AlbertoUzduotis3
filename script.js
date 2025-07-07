@@ -81,13 +81,13 @@ function chill() {
     timeEl.classList.remove("work");
     timeEl.classList.add("chill");
     show(true)
-    isPomodoro ? setTimeout(work, 5*1000) : stop()
+    isPomodoro ? setTimeout(work, 5*60000) : stop()
 }
 
 function work() {
     timeEl.classList.remove("chill");
     timeEl.classList.add("work");
-    isPomodoro ? setTimeout(chill, 25*1000) : stop()
+    isPomodoro ? setTimeout(chill, 25*60000) : stop()
 }
 
 function stop() {
@@ -98,7 +98,7 @@ function stop() {
 
 function show(afterfive) {
     const now = new Date()
-    let min = now.getSeconds() // getMinutes
+    let min = now.getMinutes() // getMinutes
     afterfive ? min += 5 : min
     min > 59 ? min -= 60 : min
     const deg = min * 6 + 90
