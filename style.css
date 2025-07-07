@@ -36,8 +36,9 @@ body {
     background-position-x: -2px;
     background-repeat: no-repeat;
     border-radius: 100px;
-    position: relative;
     overflow: hidden;
+    position: relative;
+    z-index: 3;
     /* border: 3px solid blue; */
 }
 
@@ -126,9 +127,28 @@ body {
     color: seagreen;
 }
 
-/* .pomo{
-    background-color: royalblue;
+.pomo-bg{
     width: 100px;
     height: 100px;
-    clip-path:polygon( 0 0,100px 0, 100px 100px,0 100px);
-} */
+    position: relative;
+    transform-origin: bottom right;
+    transform: rotate(90deg);
+    z-index: 0;
+    display: none;
+}
+
+.pomo-bg > div{
+    width: 100px;
+    height: 100px;
+    background-color: salmon;
+    position: absolute;
+}
+
+.pomo-bg .bg2{
+    transform-origin: bottom right;
+    transform: rotate(60deg);
+}
+
+.show {
+    display: block;
+}

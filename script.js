@@ -4,7 +4,7 @@ const hoursEl = document.getElementsByClassName('hours')[0];
 const minsEl = document.getElementsByClassName('minutes')[0];
 const secsEl = document.getElementsByClassName('seconds')[0];
 const sliderEl = document.getElementsByClassName('slider')[0];
-
+const pomobgEl = document.getElementsByClassName("pomo-bg")[0];
 
 const months = [
     'Sausio',
@@ -72,23 +72,36 @@ let isPomodoro = false
 sliderEl.addEventListener('click', () => {
    isPomodoro ? (isPomodoro=false) : (isPomodoro= true);
    sliderEl.classList.toggle("active");
-   //timeEl.classList.toggle("work");
+   show(false);
+   pomobgEl.classList.add("show");
    isPomodoro ? work() : stop()
 })
 
 function chill() {
     timeEl.classList.remove("work");
     timeEl.classList.add("chill");
-    isPomodoro ? setTimeout(work, 5*60000) : stop()
+    show(true)
+    isPomodoro ? setTimeout(work, 5*1000) : stop()
 }
 
 function work() {
     timeEl.classList.remove("chill");
     timeEl.classList.add("work");
-    isPomodoro ? setTimeout(chill, 25*60000) : stop()
+    isPomodoro ? setTimeout(chill, 25*1000) : stop()
 }
 
 function stop() {
     timeEl.classList.remove("work");
     timeEl.classList.remove("chill");
+    pomobgEl.classList.remove("show")
 }
+
+function show(afterfive) {
+    const now = new Date()
+    let min = now.getSeconds() // getMinutes
+    afterfive ? min += 5 : min
+    min > 59 ? min -= 60 : min
+    const deg = min * 6 + 90
+    pomobgEl.style.transform = "rotate(" + deg + "deg)" ;
+}
+
